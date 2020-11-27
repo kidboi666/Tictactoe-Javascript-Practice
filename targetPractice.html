@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 120px;
+      height: 120px;
+      background: #333333;
+      border: 1px solid black;
+    }
+    div div {
+      width: 30px;
+      height: 30px;
+      background: red;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    var body = document.body;
+    var reds = [];
+    var grays = [];
+
+    function clickEvent (event) {
+      var whatGray = grays.indexOf(event.target.parentNode);
+      var whatRed = reds.indexOf(event.target);
+      console.log(`whatGray ${whatGray}  whatRed ${whatRed}`);
+    }
+
+    for (i = 1; i <= 3; i++) {
+      var gray = document.createElement('div')
+      grays.push(gray) // 빈배열에 고대로 푸쉬하고
+      reds.push([]); // 빈배열에 배열을 하나씩 푸쉬하고
+      for (j = 1; j <= 3; j++) {
+        var red = document.createElement('div');
+        red.addEventListener('click', clickEvent);
+        reds[i - 1].push(red)
+        gray.appendChild(red)
+      }
+      body.appendChild(gray)
+    }
+
+  </script>
+</body>
+</html>
